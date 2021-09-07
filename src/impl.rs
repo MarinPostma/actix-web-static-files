@@ -3,8 +3,7 @@ use actix_web::{
     dev::{AppService, HttpServiceFactory, ResourceDef, ServiceRequest, ServiceResponse},
     error::Error,
     http::{header, Method, StatusCode},
-    HttpMessage, HttpRequest, HttpResponse, ResponseError, BaseHttpResponse,
-    body::Body,
+    HttpMessage, HttpRequest, HttpResponse, ResponseError,
 };
 use derive_more::{Display, Error};
 use futures::future::{ok, FutureExt, LocalBoxFuture, Ready};
@@ -318,8 +317,8 @@ mod tests_error_impl {
 
 /// Return `BadRequest` for `UriSegmentError`
 impl ResponseError for UriSegmentError {
-    fn error_response(&self) -> BaseHttpResponse<Body> {
-        BaseHttpResponse::new(StatusCode::BAD_REQUEST)
+    fn error_response(&self) -> HttpResponse {
+        HttpResponse::new(StatusCode::BAD_REQUEST)
     }
 }
 
